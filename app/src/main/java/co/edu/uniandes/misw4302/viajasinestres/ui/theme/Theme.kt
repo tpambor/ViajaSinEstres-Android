@@ -15,9 +15,9 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val LightColorScheme = lightColorScheme(
-    primary = Purple40,
-    secondary = PurpleGrey40,
-    tertiary = Pink40
+    primary = bg_green,
+    secondary = bg_button,
+    tertiary = bg_white
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
