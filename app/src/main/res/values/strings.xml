@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ViajaSinEstres</string>
+    <string name="nav_alarms">Viajes</string>
+    <string name="nav_user">Mi cuenta</string>
 </resources>
