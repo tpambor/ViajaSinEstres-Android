@@ -2,6 +2,7 @@ package co.edu.uniandes.misw4302.viajasinestres.ui.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +14,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
@@ -32,6 +34,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import co.edu.uniandes.misw4302.viajasinestres.R
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.bg_button
@@ -59,6 +62,7 @@ fun UserScreen(navController: NavHostController) {
             contentDescription = null
         )
 
+        Spacer(modifier = Modifier.height(16.dp))
 
         Row(
             modifier = Modifier
@@ -77,7 +81,7 @@ fun UserScreen(navController: NavHostController) {
                 textAlign = TextAlign.Start,
                 modifier = Modifier
                     .align(Alignment.CenterVertically)
-                    .padding(start = 8.dp),
+                    .padding(start = 3.dp),
                 color = text_Titles
 
             )
@@ -136,7 +140,7 @@ fun UserScreen(navController: NavHostController) {
 
 
                 Button(
-                    onClick = { navController.navigate("RecoverPassword") },
+                    onClick = { navController.navigate("RecoverPasswordMyAccount") },
                     modifier = Modifier
                         .padding(0.dp, 0.dp, 16.dp, 0.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -146,11 +150,11 @@ fun UserScreen(navController: NavHostController) {
                 ) {
                     Text(
                         stringResource(R.string.cambiar_password),
-                        color = MaterialTheme.colorScheme.onPrimary
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        fontSize = 16.sp
                     )
                 }
             }
-            Spacer(modifier = Modifier.height(16.dp))
             Spacer(modifier = Modifier.height(16.dp))
             Spacer(modifier = Modifier.height(16.dp))
             Row(
@@ -158,9 +162,11 @@ fun UserScreen(navController: NavHostController) {
                 horizontalArrangement = Arrangement.Center
             ) {
                 Button(
-                    onClick = {},
+                    onClick = { navController.navigate("login") },
                     modifier = Modifier
-                        .padding(0.dp, 0.dp, 16.dp, 0.dp),
+                        .padding(0.dp, 0.dp, 0.dp, 0.dp)
+                        .border(1.dp, bg_button,shape = RoundedCornerShape(50.dp))
+                        .height(36.dp),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = MaterialTheme.colorScheme.onPrimary,
                         contentColor = MaterialTheme.colorScheme.onPrimaryContainer
@@ -168,7 +174,8 @@ fun UserScreen(navController: NavHostController) {
                 ) {
                     Text(
                         stringResource(R.string.cerrar_session),
-                        color = MaterialTheme.colorScheme.primaryContainer
+                        color =text_Titles,
+                        fontSize = 16.sp
                     )
                 }
             }

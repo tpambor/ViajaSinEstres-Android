@@ -48,6 +48,8 @@ fun NavContent(navController: NavHostController, snackbarHostState: SnackbarHost
         composable(route = "recoverPassword") { RecoverPasswordScreen(navController) }
         composable(route = "alarms") { AlarmListScreen(navController) }
         composable(route = "user") { UserScreen(navController) }
+        composable(route = "recoverPasswordMyAccount") { RecoverPasswordMyAccountScreen(navController) }
+
     }
 }
 
@@ -76,6 +78,7 @@ fun NavBar(navController: NavHostController, currentBackStackEntry: NavBackStack
                         launchSingleTop = true
                     }
                 }
+
             )
         }
     }
@@ -95,7 +98,8 @@ fun TopNavBar(navController: NavHostController, currentBackStackEntry: NavBackSt
     val visible = !(
         route == "login" ||
         route == "recoverPassword" ||
-        route == "register"
+        route == "register"||
+                route == "user"
 
     )
 

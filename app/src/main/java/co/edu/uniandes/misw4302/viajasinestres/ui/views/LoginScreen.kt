@@ -120,7 +120,7 @@ fun LoginScreen(navController: NavHostController) {
 
 
                 Button(
-                    onClick = { navController.navigate("login/recover") },
+                    onClick = { navController.navigate("alarms") },
                     modifier = Modifier
                         .padding(0.dp, 0.dp, 16.dp, 0.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -137,7 +137,6 @@ fun LoginScreen(navController: NavHostController) {
 
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
             Spacer(modifier = Modifier.height(16.dp))
             Spacer(modifier = Modifier.height(16.dp))
             Row(

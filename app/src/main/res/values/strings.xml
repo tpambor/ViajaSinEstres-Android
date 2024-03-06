@@ -11,6 +11,7 @@
     <string name="cerrar_session">Cerrar Sessión</string>
     <string name="text_recuperar">Recuperar</string>
 
+
     <string name="cambiar_password">Cambiar Contraseña</string>
     <string name="title_recuperar_password">Recuperar contraseña</string>
     <string name="text_recuperar_password">Recibirás un correo electrónico con una contraseña temporal</string>
