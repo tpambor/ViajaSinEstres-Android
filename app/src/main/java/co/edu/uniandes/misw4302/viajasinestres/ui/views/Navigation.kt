@@ -49,6 +49,7 @@ fun NavContent(navController: NavHostController, snackbarHostState: SnackbarHost
         composable(route = "alarms") { AlarmListScreen(navController) }
         composable(route = "user") { UserScreen(navController) }
         composable(route = "recoverPasswordMyAccount") { RecoverPasswordMyAccountScreen(navController) }
+        composable(route = "AlternativeRoutes") { AlternativeRoutesScreen(navController) }
 
     }
 }
@@ -92,14 +93,15 @@ fun TopNavBar(navController: NavHostController, currentBackStackEntry: NavBackSt
     val title = when (route) {
         "alarms" -> "Tus próximos viajes"
         "user" -> "Mi Cuenta"
+        "RecoverPasswordMyAccount" -> "Cambiar Contraseña"
+        "AlternativeRoutes" -> "Rutas Alternativas"
         else -> ""
     }
 
     val visible = !(
         route == "login" ||
         route == "recoverPassword" ||
-        route == "register"||
-                route == "user"
+        route == "register"
 
     )
 

@@ -94,12 +94,7 @@ fun RecoverPasswordMyAccountScreen(navController: NavHostController) {
                         color = MaterialTheme.colorScheme.onPrimary
                     )
                 }
-
-
             }
-
         }
     }
-
-
 }
