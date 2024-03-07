@@ -53,9 +53,8 @@ fun AlternativeRoutesScreen(navController: NavHostController) {
                 .padding(16.dp)
                 .fillMaxWidth()
                 .height(160.dp)
-                .background(bg_input)
-                .border(1.dp, bg_input, shape = RoundedCornerShape(8.dp)),
-            shape = RoundedCornerShape(8.dp)
+                .border(1.dp, bg_input,shape = RoundedCornerShape(50.dp))
+
         ) {
             Column(
                 modifier = Modifier.padding(16.dp)
@@ -84,11 +83,11 @@ fun AlternativeRoutesScreen(navController: NavHostController) {
                 }
 
                 Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                    horizontalArrangement = Arrangement.End,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
-                        Text(text = "Salida:  7:30am", color = text_Titles)
+                        Text(text = "Salida: 7:30am", color = text_Titles)
                         Text(text = "Llegada: 8:20am", color = text_Titles)
                     }
 
@@ -96,7 +95,7 @@ fun AlternativeRoutesScreen(navController: NavHostController) {
                     Image(
                         painter = painterResource(id = R.drawable.bus_icon),
                         contentDescription = "Bus Icon",
-                        modifier = Modifier.size(48.dp)
+                        modifier = Modifier.size(2500.dp)
                     )
                 }
             }
@@ -107,8 +106,7 @@ fun AlternativeRoutesScreen(navController: NavHostController) {
                 .padding(16.dp)
                 .fillMaxWidth()
                 .height(160.dp)
-                .background(bg_input)
-                .border(1.dp, bg_input, shape = RoundedCornerShape(8.dp)),
+                .border(1.dp, bg_input,shape = RoundedCornerShape(50.dp)),
             shape = RoundedCornerShape(8.dp)
         ) {
             Column(
@@ -138,11 +136,11 @@ fun AlternativeRoutesScreen(navController: NavHostController) {
                 }
 
                 Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
+                    horizontalArrangement = Arrangement.End,
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
-                        Text(text = "Salida:  7:30am", color = text_Titles)
+                        Text(text = "Salida: 7:30am", color = text_Titles)
                         Text(text = "Llegada: 8:20am", color = text_Titles)
                     }
 
@@ -150,12 +148,10 @@ fun AlternativeRoutesScreen(navController: NavHostController) {
                     Image(
                         painter = painterResource(id = R.drawable.bus_icon),
                         contentDescription = "Bus Icon",
-                        modifier = Modifier.size(48.dp)
+                        modifier = Modifier.size(2500.dp)
                     )
                 }
             }
         }
-
-
     }
 }
