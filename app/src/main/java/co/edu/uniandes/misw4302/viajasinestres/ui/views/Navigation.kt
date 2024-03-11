@@ -45,9 +45,12 @@ fun NavContent(navController: NavHostController, snackbarHostState: SnackbarHost
         startDestination = "login"
     ) {
         composable(route = "login") { LoginScreen(navController) }
-        composable(route = "login/recover") { RecoverPasswordScreen(navController) }
+        composable(route = "recoverPassword") { RecoverPasswordScreen(navController) }
         composable(route = "alarms") { AlarmListScreen(navController) }
         composable(route = "user") { UserScreen(navController) }
+        composable(route = "recoverPasswordMyAccount") { RecoverPasswordMyAccountScreen(navController) }
+        composable(route = "AlternativeRoutes") { AlternativeRoutesScreen(navController) }
+
     }
 }
 
@@ -58,7 +61,8 @@ fun NavBar(navController: NavHostController, currentBackStackEntry: NavBackStack
     // Do not display NavigationBar for login screen
     if (route == "login")
         return
-
+    if (route == "recoverPassword")
+        return
     NavigationBar(
         modifier = Modifier.testTag("navbar")
     ) {
@@ -75,6 +79,7 @@ fun NavBar(navController: NavHostController, currentBackStackEntry: NavBackStack
                         launchSingleTop = true
                     }
                 }
+
             )
         }
     }
@@ -87,12 +92,17 @@ fun TopNavBar(navController: NavHostController, currentBackStackEntry: NavBackSt
 
     val title = when (route) {
         "alarms" -> "Tus próximos viajes"
+        "user" -> "Mi Cuenta"
+        "RecoverPasswordMyAccount" -> "Cambiar Contraseña"
+        "AlternativeRoutes" -> "Rutas Alternativas"
         else -> ""
     }
 
     val visible = !(
         route == "login" ||
+        route == "recoverPassword" ||
         route == "register"
+
     )
 
     AnimatedVisibility(visible) {

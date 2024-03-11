@@ -2,4 +2,18 @@
     <string name="app_name">ViajaSinEstres</string>
     <string name="nav_alarms">Viajes</string>
     <string name="nav_user">Mi cuenta</string>
+
+    <string name="login_instruction">Ingresa a Viaja sin estrés</string>
+    <string name="login_visitor">Ingresar</string>
+    <string name="crear_cuenta">Crea tu cuenta</string>
+    <string name="crear_cuenta_button">Crear cuenta</string>
+    <string name="Cambiar_password_button">Cambiar</string>
+    <string name="cerrar_session">Cerrar Sessión</string>
+    <string name="text_recuperar">Recuperar</string>
+
+
+    <string name="cambiar_password">Cambiar Contraseña</string>
+    <string name="title_recuperar_password">Recuperar contraseña</string>
+    <string name="text_recuperar_password">Recibirás un correo electrónico con una contraseña temporal</string>
+
 </resources>
