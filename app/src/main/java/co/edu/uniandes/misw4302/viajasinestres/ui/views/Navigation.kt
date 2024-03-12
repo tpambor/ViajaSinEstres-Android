@@ -8,6 +8,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemColors
@@ -118,15 +119,19 @@ fun TopNavBar(navController: NavHostController, currentBackStackEntry: NavBackSt
 
     val visible = !(
         route == "login" ||
-        route == "recoverPassword" ||
         route == "register"
     )
+
+    var containerColor = Color(0xffBDDBC3);
+
+    if (route == "recoverPassword")
+        containerColor = MaterialTheme.colorScheme.background;
 
     AnimatedVisibility(visible) {
         TopAppBar(
             title = { Text(text = title) },
             colors = TopAppBarDefaults.topAppBarColors(
-                containerColor = Color(0xffBDDBC3),
+                containerColor = containerColor,
                 titleContentColor = Color(0xff24422A),
                 navigationIconContentColor = Color(0xff24422A)
             ),

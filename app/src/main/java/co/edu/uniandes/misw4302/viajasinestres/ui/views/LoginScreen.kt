@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.text.selection.TextSelectionColors
@@ -53,9 +54,12 @@ fun LoginScreen(navController: NavHostController) {
 
     Column (
         modifier = Modifier.fillMaxSize().padding(20.dp, 0.dp),
-        verticalArrangement = Arrangement.Center,
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
+
+        Spacer(modifier = Modifier.height(16.dp))
+
         Image(
             modifier = Modifier
                 .size(235.dp)
@@ -63,14 +67,14 @@ fun LoginScreen(navController: NavHostController) {
             painter = painterResource(R.drawable.logo),
             contentDescription = null
         )
+
         Text(
+            modifier = Modifier.offset(y=-36.dp),
             fontWeight = FontWeight.SemiBold,
             text = stringResource(R.string.login_instruction),
             color = text_Titles,
             fontSize = 20.sp
         )
-
-        Spacer(modifier = Modifier.height(32.dp))
 
         BasicInput(
             field = correo,
@@ -105,7 +109,7 @@ fun LoginScreen(navController: NavHostController) {
                 color = text_Titles,
                 modifier = Modifier.clickable {
                     navController.navigate("recoverPassword")
-                }
+                }.padding(start = 8.dp)
             )
         }
 
@@ -129,6 +133,7 @@ fun LoginScreen(navController: NavHostController) {
             ) {
                 Text(
                     stringResource(R.string.login_visitor),
+                    fontSize = 16.sp,
                     color = fg_button
                 )
             }

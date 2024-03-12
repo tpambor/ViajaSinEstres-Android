@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
@@ -33,41 +34,42 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import co.edu.uniandes.misw4302.viajasinestres.R
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.bg_button
+import co.edu.uniandes.misw4302.viajasinestres.ui.theme.fg_button
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.text_Titles
 
 @Composable
 fun RecoverPasswordScreen(navController: NavHostController) {
     var correo by remember { mutableStateOf(FormField(value = "", error = false, errorMsg = "")) }
-    var password by remember { mutableStateOf(FormField(value = "", error = false, errorMsg = "")) }
 
     Column (
-        modifier = Modifier.fillMaxSize().padding(horizontal = 20.dp),
-        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 20.dp)
+            .offset(y=-48.dp),
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
         Image(
             modifier = Modifier
-                .size(180.dp)
+                .size(235.dp)
                 .align(Alignment.CenterHorizontally),
             painter = painterResource(R.drawable.logo),
             contentDescription = null
         )
         Text(
-            modifier = Modifier.padding(0.dp, 0.dp, 0.dp, 20.dp),
-            fontWeight = FontWeight.Bold,
+            modifier = Modifier.offset(y=-36.dp),
+            fontWeight = FontWeight.SemiBold,
             text = stringResource(R.string.title_recuperar_password),
             color = text_Titles,
             fontSize = 20.sp
         )
 
         Text(
-            modifier = Modifier.padding(10.dp, 0.dp, 0.dp, 0.dp),
+            modifier = Modifier.offset(y=-20.dp),
             text = stringResource(R.string.text_recuperar_password),
             color = text_Titles,
             fontSize = 16.sp
         )
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         Column(
             modifier = Modifier
@@ -92,10 +94,12 @@ fun RecoverPasswordScreen(navController: NavHostController) {
                 horizontalArrangement = Arrangement.Center
 
             ) {
-
-
                 Button(
-                    onClick = { navController.navigate("login") },
+                    onClick = { navController.navigate("login") {
+                        popUpTo("login") {
+                            inclusive = true
+                        }
+                    }},
                     modifier = Modifier
                         .padding(0.dp, 0.dp, 16.dp, 0.dp),
                     colors = ButtonDefaults.buttonColors(
@@ -105,32 +109,10 @@ fun RecoverPasswordScreen(navController: NavHostController) {
                 ) {
                     Text(
                         stringResource(R.string.text_recuperar),
-                        color = MaterialTheme.colorScheme.onPrimary
+                        fontSize = 16.sp,
+                        color = fg_button
                     )
                 }
-
-
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-            Spacer(modifier = Modifier.height(16.dp))
-            Spacer(modifier = Modifier.height(16.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Text(
-                    text = buildAnnotatedString {
-                        append("¿Aun no estas registrado? ")
-                        withStyle(style = SpanStyle(fontWeight = FontWeight.Bold)) {
-                            append("Registrate")
-                        }
-                    },
-                    color = text_Titles,
-                    modifier = Modifier.clickable {
-                        navController.navigate("crearCuenta")
-                    }
-                )
             }
         }
     }
