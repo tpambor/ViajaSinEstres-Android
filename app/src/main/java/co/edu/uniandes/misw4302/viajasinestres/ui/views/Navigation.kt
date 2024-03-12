@@ -11,12 +11,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
-import androidx.compose.material3.NavigationBarItemColors
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
-import androidx.compose.material3.TopAppBarColors
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -54,9 +52,8 @@ fun NavContent(navController: NavHostController, snackbarHostState: SnackbarHost
         composable(route = "recoverPassword") { RecoverPasswordScreen(navController) }
         composable(route = "alarms") { AlarmListScreen(navController) }
         composable(route = "user") { UserScreen(navController) }
-        composable(route = "recoverPasswordMyAccount") { RecoverPasswordMyAccountScreen(navController) }
+        composable(route = "user/changePassword") { RecoverPasswordMyAccountScreen(navController, snackbarHostState, activityScope) }
         composable(route = "AlternativeRoutes") { AlternativeRoutesScreen(navController) }
-
     }
 }
 
@@ -111,8 +108,8 @@ fun TopNavBar(navController: NavHostController, currentBackStackEntry: NavBackSt
 
     val title = when (route) {
         "alarms" -> "Tus próximos viajes"
-        "user" -> "Mi Cuenta"
-        "RecoverPasswordMyAccount" -> "Cambiar Contraseña"
+        "user" -> "Mi cuenta"
+        "user/changePassword" -> "Cambiar contraseña"
         "AlternativeRoutes" -> "Rutas Alternativas"
         else -> ""
     }
@@ -120,6 +117,11 @@ fun TopNavBar(navController: NavHostController, currentBackStackEntry: NavBackSt
     val visible = !(
         route == "login" ||
         route == "register"
+    )
+
+    val backVisible = !(
+        route == "user" ||
+        route == "alarms"
     )
 
     var containerColor = Color(0xffBDDBC3);
@@ -136,13 +138,15 @@ fun TopNavBar(navController: NavHostController, currentBackStackEntry: NavBackSt
                 navigationIconContentColor = Color(0xff24422A)
             ),
             navigationIcon = {
-                IconButton(
-                    onClick = { navController.navigateUp()}
-                ) {
-                    Icon(
-                        imageVector = Icons.Default.ArrowBack,
-                        contentDescription = "Back"
-                    )
+                AnimatedVisibility(backVisible) {
+                    IconButton(
+                        onClick = { navController.navigateUp()}
+                    ) {
+                        Icon(
+                            imageVector = Icons.Default.ArrowBack,
+                            contentDescription = "Back"
+                        )
+                    }
                 }
             },
             modifier = Modifier.semantics { this.contentDescription = title }

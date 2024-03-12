@@ -2,7 +2,6 @@ package co.edu.uniandes.misw4302.viajasinestres.ui
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
-import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -10,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -18,9 +18,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.ViajaSinEstresTheme
+import co.edu.uniandes.misw4302.viajasinestres.ui.theme.text_Titles
 import co.edu.uniandes.misw4302.viajasinestres.ui.views.NavBar
 import co.edu.uniandes.misw4302.viajasinestres.ui.views.NavContent
 import co.edu.uniandes.misw4302.viajasinestres.ui.views.TopNavBar
@@ -39,7 +42,7 @@ class MainActivity : ComponentActivity() {
         // Configure the notification channel.
         notificationChannel.description = "Alarms para llegar a tiempo"
         notificationChannel.enableLights(true)
-        notificationChannel.lightColor = Color.RED
+        notificationChannel.lightColor = Color.Red.toArgb()
         notificationChannel.enableVibration(true)
         notificationManager.createNotificationChannel(notificationChannel)
     }
@@ -79,7 +82,13 @@ class MainActivity : ComponentActivity() {
                     snackbarHost = {
                         SnackbarHost(
                             hostState = snackbarHostState
-                        )
+                        ) {
+                            Snackbar(
+                                it,
+                                containerColor = text_Titles,
+                                contentColor = MaterialTheme.colorScheme.background
+                            )
+                        }
                     },
                 )
             }
