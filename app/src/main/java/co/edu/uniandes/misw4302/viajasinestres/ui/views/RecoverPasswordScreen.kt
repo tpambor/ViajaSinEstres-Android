@@ -49,7 +49,7 @@ fun RecoverPasswordScreen(navController: NavHostController) {
             modifier = Modifier
                 .size(180.dp)
                 .align(Alignment.CenterHorizontally),
-            painter = painterResource(R.drawable.logo_viajesinestres),
+            painter = painterResource(R.drawable.logo),
             contentDescription = null
         )
         Text(

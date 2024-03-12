@@ -1,23 +1,22 @@
 package co.edu.uniandes.misw4302.viajasinestres.ui.theme
 
 import android.app.Activity
-import android.os.Build
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import androidx.navigation.NavBackStackEntry
 
 private val LightColorScheme = lightColorScheme(
     primary = bg_green,
     secondary = bg_button,
-    tertiary = bg_white
+    tertiary = bg_white,
+
+    background = Color(0xfff4f8f2)
 
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
@@ -32,16 +31,33 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun ViajaSinEstresTheme(
+    currentBackStackEntry: NavBackStackEntry?,
     content: @Composable () -> Unit
 ) {
     val colorScheme = LightColorScheme
+
+    val route = currentBackStackEntry?.destination?.route
+
+    val fullscreen = (
+        route == "login" ||
+        route == "recoverPassword" ||
+        route == "register"
+    )
 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
-            WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
+            if (fullscreen) {
+                window.statusBarColor = colorScheme.background.toArgb()
+                window.navigationBarColor = colorScheme.background.toArgb()
+                WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
+            }
+            else {
+                window.statusBarColor = Color(0xff222222).toArgb()
+                window.navigationBarColor = Color(0xffbddbc3).toArgb()
+                WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
+            }
         }
     }
 
