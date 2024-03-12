@@ -1,6 +1,12 @@
 package co.edu.uniandes.misw4302.viajasinestres.ui.views
 
-import co.edu.uniandes.misw4302.viajasinestres.R
+import android.Manifest
+import android.app.Notification
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Intent
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -20,7 +26,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,6 +34,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -41,9 +47,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.ContextCompat.getSystemService
 import androidx.navigation.NavHostController
+import co.edu.uniandes.misw4302.viajasinestres.R
+import co.edu.uniandes.misw4302.viajasinestres.ui.MainActivity
+import co.edu.uniandes.misw4302.viajasinestres.ui.NOTIFICATION_CHANNEL_ID
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.bg_button
-import co.edu.uniandes.misw4302.viajasinestres.ui.theme.bg_white
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.fg_button
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.text_Titles
 
@@ -51,6 +60,56 @@ import co.edu.uniandes.misw4302.viajasinestres.ui.theme.text_Titles
 fun LoginScreen(navController: NavHostController) {
     var correo by remember { mutableStateOf(FormField(value = "", error = false, errorMsg = "")) }
     var password by remember { mutableStateOf(FormField(value = "", error = false, errorMsg = "")) }
+
+    val context = LocalContext.current
+    val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
+        val notificationManager = getSystemService(context, NotificationManager::class.java) as NotificationManager
+
+        val activityActionIntent1 = Intent(context, MainActivity::class.java).apply {
+            this.putExtra("notification1", true)
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        }
+        val activityActionPendingIntent1: PendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            activityActionIntent1,
+            PendingIntent.FLAG_IMMUTABLE
+        )
+        val activityActionIntent2 = Intent(context, MainActivity::class.java).apply {
+            this.putExtra("notification2", true)
+            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+        }
+        val activityActionPendingIntent2: PendingIntent = PendingIntent.getActivity(
+            context,
+            0,
+            activityActionIntent2,
+            PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val notificationBuilder1 = Notification.Builder(context, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder1.setAutoCancel(true)
+            .setChannelId(NOTIFICATION_CHANNEL_ID)
+            .setWhen(System.currentTimeMillis())
+            .setSmallIcon(R.drawable.baseline_departure_board_24)
+            .setContentTitle("Comienza Casa a oficina")
+            .setContentText("Toma bus 3 en la parada Calle 22 a las 7:15.")
+            .setContentIntent(activityActionPendingIntent1)
+
+        notificationManager.notify(1, notificationBuilder1.build())
+
+        val notificationBuilder2 = Notification.Builder(context, NOTIFICATION_CHANNEL_ID)
+        notificationBuilder2.setAutoCancel(true)
+            .setChannelId(NOTIFICATION_CHANNEL_ID)
+            .setWhen(System.currentTimeMillis())
+            .setSmallIcon(R.drawable.baseline_departure_board_24)
+            .setContentTitle("Retraso en Casa a deporte")
+            .setContentText("Hay 25 minutos de retraso. Consulta las rutas alternativas.")
+            .setContentIntent(activityActionPendingIntent2)
+
+        notificationManager.notify(2, notificationBuilder2.build())
+
+        navController.navigate("alarms")
+    }
 
     Column (
         modifier = Modifier.fillMaxSize().padding(20.dp, 0.dp),
@@ -123,7 +182,11 @@ fun LoginScreen(navController: NavHostController) {
 
 
             Button(
-                onClick = { navController.navigate("alarms") },
+                onClick = {
+                    launcher.launch(
+                        Manifest.permission.POST_NOTIFICATIONS
+                    )
+                },
                 modifier = Modifier
                     .padding(0.dp, 0.dp, 16.dp, 0.dp),
                 colors = ButtonDefaults.buttonColors(
