@@ -31,7 +31,7 @@ class MainActivity : ComponentActivity() {
             val currentBackStackEntry by navController.currentBackStackEntryAsState()
             val activityScope = rememberCoroutineScope()
 
-            ViajaSinEstresTheme {
+            ViajaSinEstresTheme(currentBackStackEntry) {
                 Scaffold(
                     topBar = {
                         TopNavBar(navController, currentBackStackEntry)
