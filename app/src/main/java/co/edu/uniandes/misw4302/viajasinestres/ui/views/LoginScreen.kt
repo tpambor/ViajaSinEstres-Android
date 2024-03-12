@@ -156,12 +156,12 @@ fun LoginScreen(navController: NavHostController) {
                 },
                 color = text_Titles,
                 modifier = Modifier.clickable {
-                    navController.navigate("crearCuenta")
-                }
+                    //navController.navigate("crearCuenta")
+                }.padding(vertical = 16.dp)
             )
         }
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(16.dp))
     }
 
 

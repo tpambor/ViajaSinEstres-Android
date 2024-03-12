@@ -17,5 +17,5 @@ val fg_button = Color(0xFFEFF6F0)
 val text_Titles = Color(0xff24422A)
 val bg_nav = Color(0xFF4C6707)
 val bg_input = Color(0xFFDEEDE1)
-
+val text_tarjeta = Color(0xff122115)
 
