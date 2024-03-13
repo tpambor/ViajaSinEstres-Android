@@ -53,9 +53,9 @@ fun NavContent(navController: NavHostController, snackbarHostState: SnackbarHost
         composable(route = "alarms") { AlarmListScreen(navController) }
         composable(route = "alarms/1") { AlarmScreenPuntual(navController) }
         composable(route = "alarms/2") { AlarmScreenRetraso(navController) }
+        composable(route = "alarms/2/alternativas") { AlternativeRoutesScreen(navController) }
         composable(route = "user") { UserScreen(navController) }
         composable(route = "user/changePassword") { RecoverPasswordMyAccountScreen(navController, snackbarHostState, activityScope) }
-        composable(route = "AlternativeRoutes") { AlternativeRoutesScreen(navController) }
     }
 }
 
@@ -112,9 +112,9 @@ fun TopNavBar(navController: NavHostController, currentBackStackEntry: NavBackSt
         "alarms" -> "Tus próximos viajes"
         "alarms/1" -> "Casa a oficina"
         "alarms/2" -> "Casa a deporte"
+        "alarms/2/alternativas" -> "Rutas Alternativas"
         "user" -> "Mi cuenta"
         "user/changePassword" -> "Cambiar contraseña"
-        "AlternativeRoutes" -> "Rutas Alternativas"
         else -> ""
     }
 

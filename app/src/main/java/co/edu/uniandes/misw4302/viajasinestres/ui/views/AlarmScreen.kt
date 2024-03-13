@@ -61,7 +61,7 @@ fun StatusHeaderPuntual(navController: NavHostController) {
 
             Text(
                 fontWeight = FontWeight.SemiBold,
-                text = "Todo a tiempo",
+                text = "Puntual",
                 color = text_Titles,
                 fontSize = 20.sp
             )
@@ -70,7 +70,7 @@ fun StatusHeaderPuntual(navController: NavHostController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         OutlinedButton(
-            onClick = { navController.navigate("alarms/2") },
+            onClick = { },
             border = ButtonDefaults.outlinedButtonBorder.copy(brush = SolidColor(text_Titles))
         ) {
             Text(
@@ -116,7 +116,7 @@ fun StatusHeaderRetraso(navController: NavHostController) {
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
-            onClick = { },
+            onClick = { navController.navigate("alarms/2/alternativas") },
             colors = ButtonDefaults.buttonColors(
                 containerColor = bg_button
             )

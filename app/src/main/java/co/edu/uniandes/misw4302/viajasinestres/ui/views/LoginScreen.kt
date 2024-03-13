@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.selection.TextSelectionColors
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -43,6 +44,9 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
@@ -150,6 +154,7 @@ fun LoginScreen(navController: NavHostController) {
 
         BasicInput(
             field = password,
+            password = true,
             counter = false,
             onValueChanged = { updatedName ->
                 password = updatedName
@@ -243,6 +248,7 @@ data class FormField(
 fun BasicInput(
     field: FormField,
     counter: Boolean = false,
+    password: Boolean = false,
     counterMaxLength: Int? = null,
     onValueChanged: (FormField) -> Unit,
     formPlaceholder: String,
@@ -267,6 +273,8 @@ fun BasicInput(
                 backgroundColor = Color(0xff9CC9A5)
             )
         ),
+        visualTransformation = if (password) PasswordVisualTransformation() else VisualTransformation.None,
+        keyboardOptions = if (password) KeyboardOptions(keyboardType = KeyboardType.Password) else KeyboardOptions.Default,
         minLines = minLines,
         label = { Text(formPlaceholder) },
         modifier = Modifier

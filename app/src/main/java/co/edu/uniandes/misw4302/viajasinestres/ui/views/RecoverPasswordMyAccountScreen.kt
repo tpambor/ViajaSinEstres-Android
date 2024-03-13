@@ -48,6 +48,7 @@ fun RecoverPasswordMyAccountScreen(navController: NavHostController, snackbarHos
             BasicInput(
                 field = password,
                 counter = false,
+                password = true,
                 onValueChanged = { updatedName ->
                     password = updatedName
                 },
@@ -58,6 +59,7 @@ fun RecoverPasswordMyAccountScreen(navController: NavHostController, snackbarHos
             BasicInput(
                 field = confirmarpassword,
                 counter = false,
+                password = true,
                 onValueChanged = { updatedName ->
                     confirmarpassword = updatedName
                 },
