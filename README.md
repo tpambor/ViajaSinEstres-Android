@@ -7,30 +7,30 @@ ViajaSinEstres es una aplicación móvil diseñada para gestionar alarmas relaci
 
 ### Móvil - Viviana
 
-    #### Iniciar sesión
+    ### Iniciar sesión
     Permite a los usuarios iniciar sesión en la aplicación utilizando sus credenciales previamente registradas.
     
-    #### Mi cuenta
+    ### Mi cuenta
     Ofrece acceso a la información personal del nombre , email y poder cerrar session
     
-    #### Cambiar contraseña
+    ### Cambiar contraseña
     Permite al usuario cambiar su contraseña de acceso a la aplicación.
     
-    #### Rutas alternativas
+    ### Rutas alternativas
     Proporciona opciones de rutas alternativas para los viajes planificados, en caso de que se presenten contratiempos en la ruta original.
 
 ### Móvil - Tim
 
-    #### Registro
+    ### Registro
     Permite a los usuarios registrarse en la aplicación proporcionando la información necesaria.
     
-    #### Recuperar contraseña
+    ### Recuperar contraseña
     Facilita a los usuarios el proceso de recuperación de contraseñas en caso de olvido.
     
-    #### Listado de viajes
+    ### Listado de viajes
     Muestra un listado de todos los viajes planificados por el usuario
     
-    #### Detalle alarmas
+    ### Detalle alarmas
     Proporciona información detallada sobre las alarmas.
     
-    #### Notificaciones
+    ### Notificaciones
