@@ -34,3 +34,7 @@ ViajaSinEstres es una aplicación móvil diseñada para gestionar alarmas relaci
     Proporciona información detallada sobre las alarmas.
     
     ### Notificaciones
+
+## Demo
+
+https://github.com/tpambor/ViajaSinEstres-Android/assets/1379478/80060bdc-ed5c-41f8-a72c-8ecd1f2f448c
