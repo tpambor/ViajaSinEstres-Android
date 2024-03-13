@@ -2,8 +2,6 @@ package co.edu.uniandes.misw4302.viajasinestres.ui.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,11 +11,10 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -26,20 +23,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import co.edu.uniandes.misw4302.viajasinestres.R
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.bg_button
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.bg_input
-import co.edu.uniandes.misw4302.viajasinestres.ui.theme.bg_nav
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.text_Titles
 
 @Composable
@@ -48,8 +41,10 @@ fun UserScreen(navController: NavHostController) {
     var correo by remember { mutableStateOf(FormField(value = "", error = false, errorMsg = "")) }
 
     Column(
-        modifier = Modifier.fillMaxSize() .padding(horizontal = 20.dp),
-        verticalArrangement = Arrangement.Center,
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(horizontal = 20.dp),
+        verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     )
     {
@@ -57,12 +52,11 @@ fun UserScreen(navController: NavHostController) {
         Image(
             modifier = Modifier
                 .size(130.dp)
+                .padding(vertical = 16.dp)
                 .align(Alignment.CenterHorizontally),
             painter = painterResource(R.drawable.myaccount),
             contentDescription = null
         )
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         Row(
             modifier = Modifier
@@ -71,33 +65,21 @@ fun UserScreen(navController: NavHostController) {
                 .background(bg_input)
                 .padding(horizontal = 16.dp),
             verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                text = buildAnnotatedString {
-                    append("Nombre")
-
-                },
-                textAlign = TextAlign.Start,
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .padding(start = 3.dp),
+                text = "Nombre",
+                modifier = Modifier.fillMaxWidth().weight(1.0f),
                 color = text_Titles
-
             )
 
             Text(
-                text = "Matha Aristizabal",
+                text = "Martha Aristizabal",
                 color = text_Titles,
-                textAlign = TextAlign.End,
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .padding(start = 8.dp)
+                modifier = Modifier.fillMaxWidth().weight(1.0f)
             )
         }
 
-            Spacer(modifier = Modifier.height(16.dp))
-
+        Spacer(modifier = Modifier.height(24.dp))
 
         Row(
             modifier = Modifier
@@ -114,9 +96,7 @@ fun UserScreen(navController: NavHostController) {
 
                 },
                 textAlign = TextAlign.Start,
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .padding(start = 8.dp),
+                modifier = Modifier.fillMaxWidth().weight(1.0f),
                 color = text_Titles
 
             )
@@ -124,61 +104,54 @@ fun UserScreen(navController: NavHostController) {
             Text(
                 text = "martha@correos.co",
                 color = text_Titles,
-                textAlign = TextAlign.End,
-                modifier = Modifier
-                    .align(Alignment.CenterVertically)
-                    .padding(start = 8.dp)
+                textAlign = TextAlign.Start,
+                modifier = Modifier.fillMaxWidth().weight(1.0f)
             )
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
+        Spacer(modifier = Modifier.height(24.dp))
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
 
+        ) {
+
+
+            Button(
+                onClick = { navController.navigate("user/changePassword") },
+                modifier = Modifier
+                    .padding(0.dp, 0.dp, 16.dp, 0.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = bg_button,
+                    contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+                )
             ) {
-
-
-                Button(
-                    onClick = { navController.navigate("RecoverPasswordMyAccount") },
-                    modifier = Modifier
-                        .padding(0.dp, 0.dp, 16.dp, 0.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = bg_button,
-                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
-                ) {
-                    Text(
-                        stringResource(R.string.cambiar_password),
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        fontSize = 16.sp
-                    )
-                }
-            }
-            Spacer(modifier = Modifier.height(16.dp))
-            Spacer(modifier = Modifier.height(16.dp))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.Center
-            ) {
-                Button(
-                    onClick = { navController.navigate("login") },
-                    modifier = Modifier
-                        .padding(0.dp, 0.dp, 0.dp, 0.dp)
-                        .border(1.dp, bg_button,shape = RoundedCornerShape(50.dp))
-                        .height(36.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.onPrimary,
-                        contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-                    )
-                ) {
-                    Text(
-                        stringResource(R.string.cerrar_session),
-                        color =text_Titles,
-                        fontSize = 16.sp
-                    )
-                }
+                Text(
+                    "Cambiar contraseña",
+                    color = MaterialTheme.colorScheme.background,
+                    fontSize = 16.sp
+                )
             }
         }
-    }
 
+        Spacer(modifier = Modifier.weight(1.0f))
+
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            OutlinedButton(
+                onClick = { navController.navigate("login") },
+                border = ButtonDefaults.outlinedButtonBorder.copy(brush = SolidColor(text_Titles))
+            ) {
+                Text(
+                    "Cerrar sesión",
+                    color = text_Titles,
+                    fontSize = 16.sp
+                )
+            }
+        }
+
+        Spacer(modifier = Modifier.height(24.dp))
+    }
+}
