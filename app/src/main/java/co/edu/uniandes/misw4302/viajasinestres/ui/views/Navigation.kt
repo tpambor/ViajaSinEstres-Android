@@ -51,6 +51,8 @@ fun NavContent(navController: NavHostController, snackbarHostState: SnackbarHost
         composable(route = "login") { LoginScreen(navController) }
         composable(route = "recoverPassword") { RecoverPasswordScreen(navController, snackbarHostState, activityScope) }
         composable(route = "alarms") { AlarmListScreen(navController) }
+        composable(route = "alarms/1") { AlarmScreenPuntual(navController) }
+        composable(route = "alarms/2") { AlarmScreenRetraso(navController) }
         composable(route = "user") { UserScreen(navController) }
         composable(route = "user/changePassword") { RecoverPasswordMyAccountScreen(navController, snackbarHostState, activityScope) }
         composable(route = "AlternativeRoutes") { AlternativeRoutesScreen(navController) }
@@ -108,6 +110,8 @@ fun TopNavBar(navController: NavHostController, currentBackStackEntry: NavBackSt
 
     val title = when (route) {
         "alarms" -> "Tus próximos viajes"
+        "alarms/1" -> "Casa a oficina"
+        "alarms/2" -> "Casa a deporte"
         "user" -> "Mi cuenta"
         "user/changePassword" -> "Cambiar contraseña"
         "AlternativeRoutes" -> "Rutas Alternativas"
@@ -125,17 +129,28 @@ fun TopNavBar(navController: NavHostController, currentBackStackEntry: NavBackSt
     )
 
     var containerColor = Color(0xffBDDBC3);
+    var contentColor = Color(0xff24422A);
 
     if (route == "recoverPassword")
         containerColor = MaterialTheme.colorScheme.background;
+
+    if (route == "alarms/1") {
+        containerColor = Color(0xff36633F)
+        contentColor = Color(0xffF4F8F2)
+    }
+
+    if (route == "alarms/2") {
+        containerColor = Color(0xffEE1010)
+        contentColor = Color(0xffF4F8F2)
+    }
 
     AnimatedVisibility(visible) {
         TopAppBar(
             title = { Text(text = title) },
             colors = TopAppBarDefaults.topAppBarColors(
                 containerColor = containerColor,
-                titleContentColor = Color(0xff24422A),
-                navigationIconContentColor = Color(0xff24422A)
+                titleContentColor = contentColor,
+                navigationIconContentColor = contentColor
             ),
             navigationIcon = {
                 AnimatedVisibility(backVisible) {
