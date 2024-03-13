@@ -34,7 +34,15 @@ ViajaSinEstres es una aplicación móvil diseñada para gestionar alarmas relaci
     Proporciona información detallada sobre las alarmas.
     
     ### Notificaciones
+    Notifica al usuario eventos importantes, como retrasos.
 
 ## Demo
 
 https://github.com/tpambor/ViajaSinEstres-Android/assets/1379478/80060bdc-ed5c-41f8-a72c-8ecd1f2f448c
+
+## Crear un apk
+Siga El siguiente paso a paso para crear un apk de la aplicación:
+1. Asegurese de tener instalado el SDK de Android y que la variable de entorno ANDROID_HOME apunte a la carpeta donde se encuentra el SDK.
+2. Desde la interfaz de Android Studio, seleccione la opción Build -> Make Project para construir el projecto.
+3. Una vez construido el proyecto, seleccione la opción Build -> Build Bundle(s)/ APK(s) -> Build APK(s), esto construirá el archivo APK del proyecto.
+4. El archivo APK se lo encontrará en el directorio app/build/outputs/apk/debug/app-debug.apk
