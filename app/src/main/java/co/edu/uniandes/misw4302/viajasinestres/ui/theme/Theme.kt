@@ -50,12 +50,12 @@ fun ViajaSinEstresTheme(
             val window = (view.context as Activity).window
             if (fullscreen) {
                 window.statusBarColor = colorScheme.background.toArgb()
-                window.navigationBarColor = colorScheme.background.toArgb()
+                window.navigationBarColor = Color(0xff222222).toArgb()
                 WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = true
             }
             else {
                 window.statusBarColor = Color(0xff222222).toArgb()
-                window.navigationBarColor = Color(0xffbddbc3).toArgb()
+                window.navigationBarColor = Color(0xff222222).toArgb()
                 WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = false
             }
         }
