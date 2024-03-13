@@ -49,7 +49,7 @@ fun NavContent(navController: NavHostController, snackbarHostState: SnackbarHost
         startDestination = "login"
     ) {
         composable(route = "login") { LoginScreen(navController) }
-        composable(route = "recoverPassword") { RecoverPasswordScreen(navController) }
+        composable(route = "recoverPassword") { RecoverPasswordScreen(navController, snackbarHostState, activityScope) }
         composable(route = "alarms") { AlarmListScreen(navController) }
         composable(route = "user") { UserScreen(navController) }
         composable(route = "user/changePassword") { RecoverPasswordMyAccountScreen(navController, snackbarHostState, activityScope) }

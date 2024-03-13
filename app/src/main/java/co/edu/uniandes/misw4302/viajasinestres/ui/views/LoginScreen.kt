@@ -65,25 +65,24 @@ fun LoginScreen(navController: NavHostController) {
     val launcher = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) {
         val notificationManager = getSystemService(context, NotificationManager::class.java) as NotificationManager
 
-        val activityActionIntent1 = Intent(context, MainActivity::class.java).apply {
-            this.putExtra("notification1", true)
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
+        val activityActionIntent1 = Intent(context, MainActivity::class.java)
+        activityActionIntent1.putExtra("co.edu.uniandes.misw4302.viajasinestres.alarmId", 1)
+        activityActionIntent1.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         val activityActionPendingIntent1: PendingIntent = PendingIntent.getActivity(
             context,
-            0,
+            1,
             activityActionIntent1,
-            PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT + PendingIntent.FLAG_MUTABLE
         )
-        val activityActionIntent2 = Intent(context, MainActivity::class.java).apply {
-            this.putExtra("notification2", true)
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-        }
+
+        val activityActionIntent2 = Intent(context, MainActivity::class.java)
+        activityActionIntent2.putExtra("co.edu.uniandes.misw4302.viajasinestres.alarmId", 2)
+        activityActionIntent2.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         val activityActionPendingIntent2: PendingIntent = PendingIntent.getActivity(
             context,
-            0,
+            2,
             activityActionIntent2,
-            PendingIntent.FLAG_IMMUTABLE
+            PendingIntent.FLAG_UPDATE_CURRENT + PendingIntent.FLAG_MUTABLE
         )
 
         val notificationBuilder1 = Notification.Builder(context, NOTIFICATION_CHANNEL_ID)
@@ -112,7 +111,9 @@ fun LoginScreen(navController: NavHostController) {
     }
 
     Column (
-        modifier = Modifier.fillMaxSize().padding(20.dp, 0.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(20.dp, 0.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
@@ -218,9 +219,10 @@ fun LoginScreen(navController: NavHostController) {
                     }
                 },
                 color = text_Titles,
-                modifier = Modifier.clickable {
-                    //navController.navigate("crearCuenta")
-                }.padding(vertical = 16.dp)
+                modifier = Modifier
+                    .clickable {
+                    }
+                    .padding(vertical = 16.dp)
             )
         }
 

@@ -141,7 +141,13 @@ fun UserScreen(navController: NavHostController) {
             horizontalArrangement = Arrangement.Center
         ) {
             OutlinedButton(
-                onClick = { navController.navigate("login") },
+                onClick = {
+                    navController.navigate("login") {
+                        popUpTo("login") {
+                            inclusive = true
+                        }
+                    }
+                },
                 border = ButtonDefaults.outlinedButtonBorder.copy(brush = SolidColor(text_Titles))
             ) {
                 Text(

@@ -90,7 +90,7 @@ fun AlarmListScreen(navController: NavHostController) {
             salida = "7:30am",
             llegada = "8:50am",
             chip = { ChipPuntual() },
-            onClick = { navController.navigate("AlternativeRoutes") }
+            onClick = { navController.navigate("alarms/1") }
         )
 
         BasicCard(
@@ -98,7 +98,39 @@ fun AlarmListScreen(navController: NavHostController) {
             salida = "10:20am",
             llegada = "11:05am",
             chip = { ChipRetraso("+25 min") },
-            onClick = { navController.navigate("AlternativeRoutes") }
+            onClick = { navController.navigate("alarms/2") }
+        )
+
+        BasicCard(
+            title = "Alarm 3",
+            salida = "2:30pm",
+            llegada = "2:50pm",
+            chip = { ChipPuntual() },
+            onClick = { navController.navigate("alarms/1") }
+        )
+
+        BasicCard(
+            title = "Alarm 4",
+            salida = "3:30pm",
+            llegada = "3:50pm",
+            chip = { ChipPuntual() },
+            onClick = { navController.navigate("alarms/1") }
+        )
+
+        BasicCard(
+            title = "Alarm 5",
+            salida = "4:30pm",
+            llegada = "4:50pm",
+            chip = { ChipPuntual() },
+            onClick = { navController.navigate("alarms/1") }
+        )
+
+        BasicCard(
+            title = "Alarm 6",
+            salida = "5:30pm",
+            llegada = "5:50pm",
+            chip = { ChipPuntual() },
+            onClick = { navController.navigate("alarms/1") }
         )
     }
 }

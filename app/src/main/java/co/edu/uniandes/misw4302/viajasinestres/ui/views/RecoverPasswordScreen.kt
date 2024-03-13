@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -36,9 +37,11 @@ import co.edu.uniandes.misw4302.viajasinestres.R
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.bg_button
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.fg_button
 import co.edu.uniandes.misw4302.viajasinestres.ui.theme.text_Titles
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 
 @Composable
-fun RecoverPasswordScreen(navController: NavHostController) {
+fun RecoverPasswordScreen(navController: NavHostController, snackbarHostState: SnackbarHostState, activityScope: CoroutineScope) {
     var correo by remember { mutableStateOf(FormField(value = "", error = false, errorMsg = "")) }
 
     Column (
@@ -95,11 +98,17 @@ fun RecoverPasswordScreen(navController: NavHostController) {
 
             ) {
                 Button(
-                    onClick = { navController.navigate("login") {
-                        popUpTo("login") {
-                            inclusive = true
+                    onClick = {
+                        activityScope.launch {
+                            snackbarHostState.showSnackbar("Se han enviado las indicaciones a tu correo")
                         }
-                    }},
+
+                        navController.navigate("login") {
+                            popUpTo("login") {
+                                inclusive = true
+                            }
+                        }
+                    },
                     modifier = Modifier
                         .padding(0.dp, 0.dp, 16.dp, 0.dp),
                     colors = ButtonDefaults.buttonColors(

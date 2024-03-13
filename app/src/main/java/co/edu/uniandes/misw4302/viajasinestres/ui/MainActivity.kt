@@ -2,7 +2,9 @@ package co.edu.uniandes.misw4302.viajasinestres.ui
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -52,8 +54,7 @@ class MainActivity : ComponentActivity() {
 
         setupNotifications()
 
-        val notification1 = intent.getBooleanExtra("notification1", false)
-        val notification2 = intent.getBooleanExtra("notification2", false)
+        val alarmId = intent.getIntExtra("co.edu.uniandes.misw4302.viajasinestres.alarmId", -1)
 
         setContent {
             val snackbarHostState = remember { SnackbarHostState() }
@@ -93,17 +94,15 @@ class MainActivity : ComponentActivity() {
                 )
             }
 
-            LaunchedEffect (notification1) {
-                if (notification1) {
-                    navController.navigate("user")
+            LaunchedEffect (alarmId) {
+                if (alarmId == 1) {
+                    Log.e("TEST", "Notification1")
                     navController.navigate("alarms")
-                }
-            }
-
-            LaunchedEffect (notification2) {
-                if (notification2) {
-                    navController.navigate("user")
+                    navController.navigate("alarms/1")
+                } else if (alarmId == 2) {
+                    Log.e("TEST", "Notification2")
                     navController.navigate("alarms")
+                    navController.navigate("alarms/2")
                 }
             }
         }
